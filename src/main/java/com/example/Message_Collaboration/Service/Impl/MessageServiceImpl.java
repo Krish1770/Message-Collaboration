@@ -176,7 +176,7 @@ public class MessageServiceImpl implements MessageService {
         System.out.println(message1+" "+message2);
 
         message1.addAll(message2);
-
+        System.out.println(productId + "iddd");
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(HttpStatus.OK,"list of collaborators of product "+productId,message1));
     }
 
