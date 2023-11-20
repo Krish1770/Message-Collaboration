@@ -7,6 +7,10 @@ import com.example.Message_Collaboration.Entity.Message;
 import com.example.Message_Collaboration.Repository.Service.MessageRepoService;
 import com.example.Message_Collaboration.Repository.Service.TransactionTimeRepoService;
 import com.example.Message_Collaboration.Service.MessageService;
+import com.example.Message_Collaboration.utils.ApplicationMessageConstants;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +28,7 @@ import java.util.stream.Collectors;
 @Service
 public class MessageServiceImpl implements MessageService {
 
+    private final static Log LOG = LogFactory.getLog(MessageServiceImpl.class);
     @Autowired
     private ModelMapper  modelMapper;
     @Autowired
@@ -59,7 +64,7 @@ public class MessageServiceImpl implements MessageService {
 
         if(message.isPresent())
         {
-            System.out.println("fdfrhrthrtru");
+            LOG.info("fdfrhrthrtru");
                  if(messageDTO.getTransactionType().equals("secondary"))
                  {
                      if(message.get().getTransactionType().equals("primary") && message.get().getTransactionStatus().equals("requested"))
@@ -72,7 +77,7 @@ public class MessageServiceImpl implements MessageService {
 
                          String request=message.get().getTransactionStatus();
 
-                         if(request.equals("rejected"))
+                         if(request.equals(ApplicationMessageConstants.REJECTED))
                           message.get().setTransactionStatus("rejected");
                          else
                          {

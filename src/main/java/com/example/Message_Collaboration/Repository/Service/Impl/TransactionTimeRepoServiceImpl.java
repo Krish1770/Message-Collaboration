@@ -11,6 +11,7 @@ public class TransactionTimeRepoServiceImpl implements TransactionTimeRepoServic
 
     @Autowired
     private TransactionTimeRepository transactionTimeRepository;
+
     @Override
     public TransactionTime save(TransactionTime transactionTime) {
         return transactionTimeRepository.save(transactionTime);
